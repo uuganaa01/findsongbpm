@@ -17,7 +17,49 @@ const InputSong = ({ onSearchTrack, placeHolder }: Props) => {
   };
 
   return (
-    <div className="uk-search uk-search-large">
+    <nav className="uk-navbar-container uk-margin" uk-navbar>
+      <div className="uk-navbar-left">
+        <div className="uk-navbar-item">
+          <div className="uk-search uk-search-navbar">
+            <span uk-search-icon="" className="uk-icon uk-search-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                data-svg="search-navbar"
+              >
+                <circle
+                  fill="none"
+                  stroke="#000"
+                  strokeWidth="1.1"
+                  cx="10.5"
+                  cy="10.5"
+                  r="9.5"
+                ></circle>
+                <line
+                  fill="none"
+                  stroke="#000"
+                  strokeWidth="1.1"
+                  x1="23"
+                  y1="23"
+                  x2="17"
+                  y2="17"
+                ></line>
+              </svg>
+            </span>
+            <input
+              className="uk-search-input"
+              type="search"
+              onKeyUp={(e) => onKeyUp(e)}
+              placeholder={placeHolder}
+            />
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    /* <div className="uk-search uk-search-large">
       <span className="uk-icon uk-search-icon">
         <svg
           width="40"
@@ -46,12 +88,9 @@ const InputSong = ({ onSearchTrack, placeHolder }: Props) => {
         </svg>
       </span>
       <input
-        className="uk-search-input uk-margin-bottom"
-        onKeyUp={(e) => onKeyUp(e)}
-        type="search"
-        placeholder={placeHolder}
+
       />
-    </div>
+    </div> */
   );
 };
 
