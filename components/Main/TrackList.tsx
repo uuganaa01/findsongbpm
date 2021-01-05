@@ -7,7 +7,7 @@ type Props = {
 
 const TrackList = ({ tracks }: Props) => {
   let tracksUI = tracks.map((track, index) => {
-    return <Track key={`${index}+${track}`} value={track} />;
+    return <Track key={`${index}+${track}`} index={index} value={track} />;
   });
   return <div>{tracksUI}</div>;
 };

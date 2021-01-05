@@ -15,15 +15,12 @@ const Layout = ({ children, title = "" }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Topbar/>
-      <div className="uk-sticky-placeholder" style={{ height: 80, margin: 0, }}></div>
-      {/* <Sidebar /> */}
-      <div className="tm-main uk-section uk-section-default">
+      <Topbar />
+      <div className="tm-main uk-section" style={{ background: "#ebeef1" }}>
         <div className="uk-container uk-container-small">
           {children}
         </div>
       </div>
-      {/* <Offcanvas /> */}
     </Fragment>
   );
 };
