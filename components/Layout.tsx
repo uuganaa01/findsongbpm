@@ -17,12 +17,11 @@ const Layout = ({ children, title = "" }: Props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Topbar />
-      <div className="tm-main uk-section" style={{ background: "#ebeef1", minHeight: "71vh" }}>
+      <div className="tm-main uk-section">
         <div className="uk-container uk-container-small">
           {children}
         </div>
       </div>
-      <Footer />
     </Fragment>
   );
 };

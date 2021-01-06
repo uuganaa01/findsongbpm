@@ -5,7 +5,7 @@ type Props = {};
 
 const Topbar = ({}: Props) => {
   return (
-    <nav className="uk-margin-remove-bottom uk-align-center" style={{ background: "#2b2d42" }}>
+    <nav className="uk-margin-remove-bottom uk-align-center" style={{ background: "#14213d" }}>
       <a href="/" className="uk-navbar-item uk-logo">
         <svg
           width="39"

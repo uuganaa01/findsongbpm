@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@speechly/react-client": "0.0.4",
     "axios": "^0.21.1",
     "next": "10.0.4",
     "querystring": "^0.2.0",

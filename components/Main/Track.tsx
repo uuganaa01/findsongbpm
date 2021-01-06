@@ -38,19 +38,24 @@ const Track = ({ value, index }: Props) => {
         className="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-margin uk-child-width-1-4@m uk-grid"
         style={{ borderRadius: "14px" }}
       >
-        <div className="uk-card-media-left uk-cover-container" style={{ borderRadius: "14px" }}>
-          <img src={value.albumArtUrl} alt="" />
+        <div
+          className="uk-card-media-left uk-cover-container"
+          style={{ borderRadius: "14px" }}
+        >
+          <img src={value.albumArtUrl} alt="" style={{ width: "100%" }} />
         </div>
         <div className="uk-width-expand@m">
           <div
             className="uk-card-body"
-            style={{ paddingTop: 15, paddingLeft: 30, paddingBottom: 0 }}
+            style={{ paddingTop: 25, paddingLeft: 30, paddingBottom: 30 }}
           >
-            <h3 className="uk-margin-remove">
+            <h3 className="uk-margin-small uk-text-normal">
               {value.artist} - {value.name}
             </h3>
-            <h4 className="uk-margin-small-top">
-              {value.duration} {value.tempo} Bpm {value.key}
+            <h4 className="uk-margin-small">
+              Duration: <span className="uk-text-bold">{value.duration}</span>{" "}
+              BPM: <span className="uk-text-bold">{value.tempo}</span> Key:{" "}
+              <span className="uk-text-bold">{value.key}</span>
             </h4>
           </div>
         </div>

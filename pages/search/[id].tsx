@@ -8,6 +8,7 @@ import { useRouter } from "next/dist/client/router";
 import { searchTrack } from "../../lib/spotify";
 import qs from "querystring";
 import Head from "next/head";
+import Footer from "../../components/Footer/Footer";
 
 // interface Props {
 //   query: string;
@@ -62,10 +63,7 @@ const SearchResult = ({ tracks }: Props) => {
           property="og:title"
           content={`  ${tracks[0].name} by ${tracks[0].artist} - findsongbpm`}
         />
-        <meta
-          property="og:description"
-          content={`find the bpm of any song`}
-        />
+        <meta property="og:description" content={`find the bpm of any song`} />
         <meta property="og:image" content={tracks[0].albumArtUrl} />
         <meta
           property="og:url"
@@ -80,6 +78,7 @@ const SearchResult = ({ tracks }: Props) => {
         />
         <TrackList tracks={tracks} searchText={searchText} />
       </Layout>
+      <Footer />
     </Fragment>
   );
 };

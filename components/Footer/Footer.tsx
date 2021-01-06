@@ -4,7 +4,11 @@ type Props = {};
 
 const Footer = ({}: Props) => {
   return (
-    <nav className="uk-margin-remove uk-align-center" style={{ background: "#ebeef1", minHeight: "20vh" }}>
+    <nav className="uk-margin">
+      <div className="uk-navbar uk-container uk-container-small">
+        <div className="uk-navbar-left">© 2021 findsongbpm.com</div>
+        <div className="uk-navbar-right">Powered by the Spotify Web API</div>
+      </div>
     </nav>
   );
 };
