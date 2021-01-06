@@ -19,7 +19,7 @@ const InputSong = ({ onSearchTrack, loading, placeHolder }: Props) => {
   };
 
   return (
-    <nav className="uk-navbar uk-navbar-container uk-margin">
+    <nav className="uk-navbar uk-navbar-container uk-margin" style={{ borderRadius: "14px" }}>
       <div className="uk-navbar-left">
         <div className="uk-navbar-item">
           <div className="uk-search uk-search-navbar">
@@ -72,7 +72,7 @@ const InputSong = ({ onSearchTrack, loading, placeHolder }: Props) => {
               )}
             </span>
             <input
-              className="uk-input uk-search-input uk-margin-small-left"
+              className="uk-input uk-search-input uk-margin-small-left" 
               type="search"
               onKeyUp={(e) => onKeyUp(e)}
               placeholder={placeHolder}

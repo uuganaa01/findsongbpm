@@ -36,9 +36,9 @@ const Track = ({ value, index }: Props) => {
     <React.Fragment>
       <div
         className="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-margin uk-child-width-1-4@m uk-grid"
-        // onMouseLeave={pausePreview}
+        style={{ borderRadius: "14px" }}
       >
-        <div className="uk-card-media-left uk-cover-container">
+        <div className="uk-card-media-left uk-cover-container" style={{ borderRadius: "14px" }}>
           <img src={value.albumArtUrl} alt="" />
         </div>
         <div className="uk-width-expand@m">

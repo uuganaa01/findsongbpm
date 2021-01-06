@@ -5,7 +5,7 @@ type Props = {};
 
 const Topbar = ({}: Props) => {
   return (
-    <nav className="uk-margin-remove-bottom uk-align-center">
+    <nav className="uk-margin-remove-bottom uk-align-center" style={{ background: "#2b2d42" }}>
       <a href="/" className="uk-navbar-item uk-logo">
         <svg
           width="39"
@@ -13,7 +13,7 @@ const Topbar = ({}: Props) => {
           viewBox="0 0 28 34"
           xmlns="http://www.w3.org/2000/svg"
           className="uk-margin-small-right uk-svg"
-          data-svg="../images/uikit-logo.svg"
+          // data-svg="../images/uikit-logo.svg"
         >
           <polygon
             fill="#fff"
