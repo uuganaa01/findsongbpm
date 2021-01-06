@@ -14,24 +14,22 @@ const Home = () =>
   // props: InferGetServerSidePropsType<typeof getServerSideProps>
   {
     const router = useRouter();
-    const [tracks, setTracks] = useState([]);
-
+    const [loading, setLoading] = useState(false);
     const onSearchTrack = async (query) => {
-      router.push({
-        pathname: '/search/[id]',
-        query: {id: query}
-      })
+      setLoading(true);
+      await router.push({
+        pathname: "/search/[id]",
+        query: { id: query },
+      });
     };
 
     return (
-      <Layout title={"HOME PAGE"}>
+      <Layout title={`findsongbpm.com - Find the BPM & Key for any song`}>
         <InputSong
           onSearchTrack={onSearchTrack}
           placeHolder="Type a song, get a bpm"
+          loading={loading}
         />
-        <TrackList tracks={tracks} />
-
-        {/* <TagList tags={defaultTags} onDeleteTag={_onDeleteTag} /> */}
       </Layout>
     );
   };

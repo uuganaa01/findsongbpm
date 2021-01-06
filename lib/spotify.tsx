@@ -51,6 +51,8 @@ interface Song {
   album: string;
   albumArtUrl: string;
   duration: string;
+  tempo: number;
+  key: string;
   previewUrl?: string | null;
   createdAt?: Date | string;
 }
@@ -110,7 +112,43 @@ const millisToMinutesAndSeconds = (millis) => {
   return minutes + ":" + (seconds < 10 ? "0" : "") + seconds.toFixed(0);
 };
 
-const formatSong = (spotifyTrack: SpotifyTrack, isSearch = false): Song => {
+const pitchToKey = (key) => {
+  switch (key) {
+    case 0:
+      return "C";
+    case 1:
+      return "C#";
+    case 2:
+      return "D";
+    case 3:
+      return "D#";
+    case 4:
+      return "E";
+    case 5:
+      return "F";
+    case 6:
+      return "F#";
+    case 7:
+      return "G";
+    case 8:
+      return "G#";
+    case 9:
+      return "A";
+    case 10:
+      return "A#";
+    case 11:
+      return "B";
+    case -1:
+      return "";
+    default:
+      break;
+  }
+};
+
+const formatSong = async (
+  spotifyTrack: SpotifyTrack,
+  isSearch = false
+): Promise<Song> => {
   // If we are in a search, we want the smallest album art thumbnail
   let albumArtUrl: string;
   if (isSearch) {
@@ -120,6 +158,9 @@ const formatSong = (spotifyTrack: SpotifyTrack, isSearch = false): Song => {
     albumArtUrl = spotifyTrack.album.images[0].url;
   }
 
+  const meta = await getTrackMeta(spotifyTrack.id);
+  console.log(meta, "meta");
+
   return {
     id: spotifyTrack.id,
     name: spotifyTrack.name,
@@ -127,23 +168,27 @@ const formatSong = (spotifyTrack: SpotifyTrack, isSearch = false): Song => {
     artist: spotifyTrack.artists[0].name,
     album: spotifyTrack.album.name,
     albumArtUrl,
+    tempo: meta.tempo.toFixed(0),
+    key: pitchToKey(meta.key),
     duration: millisToMinutesAndSeconds(spotifyTrack.duration_ms),
     previewUrl: spotifyTrack.preview_url,
   };
 };
 
-const formatSpotifySearchResults = (results: SpotifySearchResults): Song[] => {
+const formatSpotifySearchResults = async (
+  results: SpotifySearchResults
+): Promise<Song[]> => {
   if (!results || !results.items) {
     return [];
   }
-  return results.items.map((item) => formatSong(item, true));
+  const items = results.items.map((item) => formatSong(item, true));
+  return Promise.all(items);
 };
 
 // Search Track
 
 export const searchTrack = async (query: string) => {
   const token = await getSpotifyToken();
-  console.log(query, "query");
   const searchTerm = query.replace(" ", "%20");
   const { data } = await axios({
     url: `https://api.spotify.com/v1/search?q=${searchTerm}&type=track&limit=5`,
@@ -154,4 +199,19 @@ export const searchTrack = async (query: string) => {
   });
 
   return formatSpotifySearchResults(data.tracks);
+};
+
+export const getTrackMeta = async (id: string) => {
+  const token = await getSpotifyToken();
+  const { data } = await axios({
+    url: `	https://api.spotify.com/v1/audio-features/${id}`,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token.access_token}`,
+    },
+  });
+
+  return {
+    ...data,
+  };
 };
