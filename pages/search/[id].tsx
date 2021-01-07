@@ -9,6 +9,7 @@ import { searchTrack } from "../../lib/spotify";
 import qs from "querystring";
 import Head from "next/head";
 import Footer from "../../components/Footer/Footer";
+import Logo from "../../components/Topbar/Logo";
 
 // interface Props {
 //   query: string;
@@ -71,6 +72,7 @@ const SearchResult = ({ tracks }: Props) => {
         />
       </Head>
       <Layout title={`findsongbpm.com-bpm for "${searchText}"`}>
+        <Logo />
         <InputSong
           onSearchTrack={onSearchTrack}
           placeHolder="Type a song, get a bpm"

@@ -6,6 +6,7 @@ import { useState } from "react";
 import TrackList from "../components/Main/TrackList";
 import { useRouter } from "next/dist/client/router";
 import { SpeechProvider, useSpeechContext } from "@speechly/react-client";
+import Logo from "../components/Topbar/Logo";
 
 // export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
 
@@ -27,6 +28,7 @@ const Home = () =>
     return (
       <Layout title={`findsongbpm.com - Find the BPM & Key for any song`}>
         <div className="uk-margin-xlarge-top">
+          <Logo />
           <InputSong
             onSearchTrack={onSearchTrack}
             placeHolder="Type a song, get a bpm"
