@@ -12,9 +12,21 @@ const TrackList = ({ tracks, searchText }: Props) => {
   });
   return (
     <div>
-      {searchText && <h3>Result found for <b>"{searchText}"</b></h3>}
-      <hr/>
-      {tracksUI}
+      {searchText && tracks.length > 0 && (
+        <>
+          <h3>
+            Result found for <b>"{searchText}"</b>
+          </h3>
+          <hr />
+          {tracksUI}
+        </>
+      )}
+      {searchText && tracks.length == 0 && (
+        <>
+          <h3>No results found</h3>
+          <hr />
+        </>
+      )}
     </div>
   );
 };

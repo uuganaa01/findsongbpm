@@ -19,9 +19,10 @@ const Home = () =>
     const [loading, setLoading] = useState(false);
     const onSearchTrack = async (query) => {
       setLoading(true);
+      var replaced = query.replace(/ /g, "-");
       await router.push({
         pathname: "/search/[id]",
-        query: { id: query },
+        query: { id: replaced },
       });
     };
 
@@ -38,7 +39,7 @@ const Home = () =>
         {/* <SpeechProvider appId="99c16bb5-3f15-439a-aeda-64bc8cf3b1a6" language="en-US">
           <SpeechlyApp />
         </SpeechProvider> */}
-        <nav className="uk-position-bottom">
+        <nav className="">
           <div className="uk-navbar uk-container uk-container-small uk-margin">
             <div className="uk-navbar-left">© 2021 findsongbpm.com</div>
             <div className="uk-navbar-right">

@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (
 ): Promise<{
   props: { tracks: Track[] };
 }> => {
-  const searchTerm = "" + context.query.id;
+  const searchTerm = ("" + context.query.id).replace(/-/g, " ");
   const tracks = await searchTrack(searchTerm);
 
   return { props: { tracks } };
@@ -49,9 +49,10 @@ const SearchResult = ({ tracks }: Props) => {
   const [searchText, setSearchText] = useState("" + router.query.id);
   const onSearchTrack = async (query) => {
     setLoading(true);
+    var replaced = query.replace(/ /g, "-");
     await router.push({
       pathname: "/search/[id]",
-      query: { id: query },
+      query: { id: replaced },
     });
     setSearchText(query);
     setLoading(false);
@@ -62,13 +63,13 @@ const SearchResult = ({ tracks }: Props) => {
       <Head>
         <meta
           property="og:title"
-          content={`  ${tracks[0].name} by ${tracks[0].artist} - findsongbpm`}
+          content={`  ${tracks.length > 0 && tracks[0].name} by ${tracks.length > 0 && tracks[0].artist} - findsongbpm`}
         />
         <meta property="og:description" content={`find the bpm of any song`} />
-        <meta property="og:image" content={tracks[0].albumArtUrl} />
+        <meta property="og:image" content={tracks.length > 0 && tracks[0].albumArtUrl} />
         <meta
           property="og:url"
-          content={`https://findsongbpm.com/search/${tracks[0].name}}`}
+          content={`https://findsongbpm.com/search/${tracks.length > 0 && tracks[0].name}}`}
         />
       </Head>
       <Layout title={`findsongbpm.com-bpm for "${searchText}"`}>
@@ -79,8 +80,9 @@ const SearchResult = ({ tracks }: Props) => {
           loading={loading}
         />
         <TrackList tracks={tracks} searchText={searchText} />
+        <Footer />
       </Layout>
-      <Footer />
+      
     </Fragment>
   );
 };
